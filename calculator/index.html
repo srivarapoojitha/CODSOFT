@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Animated Background Orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <main class="app" role="main">
+    <div class="calc-card">
+
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <span class="app-title">Calc</span>
+        <div class="top-actions">
+
+          <!-- History Toggle Button -->
+          <button class="icon-btn" id="hist-toggle-btn" title="History (H)" aria-label="Toggle history">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </button>
+
+          <!-- Theme Toggle Button -->
+          <button class="icon-btn" id="theme-btn" title="Toggle Theme (T)" aria-label="Toggle theme">
+            <svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1"  x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1"  y1="12" x2="3"  y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+              <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- History Panel -->
+      <div class="history-panel" id="history-panel" aria-live="polite">
+        <div class="history-inner">
+          <div class="history-header">
+            <span class="history-title">History</span>
+            <button class="clear-hist-btn" id="clear-hist-btn">Clear all</button>
+          </div>
+          <div id="history-list">
+            <p class="history-empty">No calculations yet</p>
+          </div>
+        </div>
+        <div class="history-spacer"></div>
+      </div>
+
+      <!-- Display -->
+      <div class="display" id="display-area">
+        <button class="copy-btn" id="copy-btn" title="Copy result">Copy</button>
+        <div id="expr-display" aria-label="Expression"></div>
+        <div id="result-display" aria-label="Result" aria-live="polite">0</div>
+      </div>
+
+      <!-- Button Grid -->
+      <div class="btn-grid" role="group" aria-label="Calculator buttons">
+        <!-- Row 1 -->
+        <button class="btn btn-clear" data-action="clear">AC</button>
+        <button class="btn btn-neg"   data-action="negate">+/−</button>
+        <button class="btn btn-pct"   data-action="percent">%</button>
+        <button class="btn btn-op"    data-action="operator" data-value="÷">÷</button>
+        <!-- Row 2 -->
+        <button class="btn btn-num"   data-action="digit" data-value="7">7</button>
+        <button class="btn btn-num"   data-action="digit" data-value="8">8</button>
+        <button class="btn btn-num"   data-action="digit" data-value="9">9</button>
+        <button class="btn btn-op"    data-action="operator" data-value="×">×</button>
+        <!-- Row 3 -->
+        <button class="btn btn-num"   data-action="digit" data-value="4">4</button>
+        <button class="btn btn-num"   data-action="digit" data-value="5">5</button>
+        <button class="btn btn-num"   data-action="digit" data-value="6">6</button>
+        <button class="btn btn-op"    data-action="operator" data-value="−">−</button>
+        <!-- Row 4 -->
+        <button class="btn btn-num"   data-action="digit" data-value="1">1</button>
+        <button class="btn btn-num"   data-action="digit" data-value="2">2</button>
+        <button class="btn btn-num"   data-action="digit" data-value="3">3</button>
+        <button class="btn btn-op"    data-action="operator" data-value="+">+</button>
+        <!-- Row 5 -->
+        <button class="btn btn-num btn-zero" data-action="digit" data-value="0">0</button>
+        <button class="btn btn-num"   data-action="decimal">.</button>
+        <button class="btn btn-del"   data-action="delete">⌫</button>
+        <button class="btn btn-eq"    data-action="equals">=</button>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">KEYBOARD READY · ESC = CLEAR · H = HISTORY</div>
+
+    </div><!-- .calc-card -->
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

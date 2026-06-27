@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculator</title>
+<style>
+/* ============================================================
+   CSS VARIABLES — Light & Dark Themes
+   ============================================================ */
+:root {
+  --bg-grad-a: #0f0c29;
+  --bg-grad-b: #302b63;
+  --bg-grad-c: #24243e;
+
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+  --glass-shadow: 0 32px 80px rgba(0,0,0,0.55);
+
+  --display-bg: rgba(0,0,0,0.35);
+  --display-expr: rgba(255,255,255,0.45);
+  --display-result: #ffffff;
+
+  --btn-num-bg: rgba(255,255,255,0.09);
+  --btn-num-hover: rgba(255,255,255,0.16);
+  --btn-num-fg: #ffffff;
+
+  --btn-op-bg: rgba(139,92,246,0.25);
+  --btn-op-hover: rgba(139,92,246,0.45);
+  --btn-op-fg: #c4b5fd;
+
+  --btn-eq-bg: linear-gradient(135deg,#7c3aed,#6d28d9);
+  --btn-eq-hover: linear-gradient(135deg,#8b5cf6,#7c3aed);
+  --btn-eq-fg: #ffffff;
+
+  --btn-clear-bg: rgba(239,68,68,0.2);
+  --btn-clear-hover: rgba(239,68,68,0.38);
+  --btn-clear-fg: #fca5a5;
+
+  --btn-del-bg: rgba(251,191,36,0.18);
+  --btn-del-hover: rgba(251,191,36,0.32);
+  --btn-del-fg: #fde68a;
+
+  --btn-pct-bg: rgba(52,211,153,0.18);
+  --btn-pct-hover: rgba(52,211,153,0.32);
+  --btn-pct-fg: #6ee7b7;
+
+  --btn-neg-bg: rgba(251,191,36,0.18);
+  --btn-neg-hover: rgba(251,191,36,0.32);
+  --btn-neg-fg: #fde68a;
+
+  --history-bg: rgba(0,0,0,0.4);
+  --history-item: rgba(255,255,255,0.07);
+  --history-text: rgba(255,255,255,0.65);
+
+  --theme-toggle-bg: rgba(255,255,255,0.1);
+  --theme-toggle-fg: #e2e8f0;
+
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --radius-lg: 28px;
+  --radius-btn: 18px;
+  --transition: 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+[data-theme="light"] {
+  --bg-grad-a: #e8eaf6;
+  --bg-grad-b: #c5cae9;
+  --bg-grad-c: #e8eaf6;
+
+  --glass-bg: rgba(255,255,255,0.65);
+  --glass-border: rgba(100,100,140,0.18);
+  --glass-shadow: 0 32px 80px rgba(60,60,120,0.18);
+
+  --display-bg: rgba(255,255,255,0.55);
+  --display-expr: rgba(80,80,120,0.6);
+  --display-result: #1e1b4b;
+
+  --btn-num-bg: rgba(255,255,255,0.72);
+  --btn-num-hover: rgba(237,233,254,0.9);
+  --btn-num-fg: #1e1b4b;
+
+  --btn-op-bg: rgba(139,92,246,0.13);
+  --btn-op-hover: rgba(139,92,246,0.25);
+  --btn-op-fg: #5b21b6;
+
+  --btn-clear-bg: rgba(239,68,68,0.1);
+  --btn-clear-hover: rgba(239,68,68,0.22);
+  --btn-clear-fg: #b91c1c;
+
+  --btn-del-bg: rgba(217,119,6,0.1);
+  --btn-del-hover: rgba(217,119,6,0.22);
+  --btn-del-fg: #92400e;
+
+  --btn-pct-bg: rgba(5,150,105,0.1);
+  --btn-pct-hover: rgba(5,150,105,0.22);
+  --btn-pct-fg: #065f46;
+
+  --btn-neg-bg: rgba(217,119,6,0.1);
+  --btn-neg-hover: rgba(217,119,6,0.22);
+  --btn-neg-fg: #92400e;
+
+  --history-bg: rgba(255,255,255,0.5);
+  --history-item: rgba(139,92,246,0.07);
+  --history-text: rgba(50,50,90,0.75);
+
+  --theme-toggle-bg: rgba(139,92,246,0.12);
+  --theme-toggle-fg: #5b21b6;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-display);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-grad-a), var(--bg-grad-b), var(--bg-grad-c));
+  transition: background 0.5s ease;
+}
+
+/* ============================================================
+   ANIMATED BACKGROUND ORBS
+   ============================================================ */
+.bg-orbs { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: floatOrb 14s ease-in-out infinite;
+}
+.orb-1 { width: 420px; height: 420px; background: #7c3aed; top: -100px; left: -120px; animation-delay: 0s; }
+.orb-2 { width: 320px; height: 320px; background: #2563eb; bottom: -80px; right: -80px; animation-delay: -5s; }
+.orb-3 { width: 250px; height: 250px; background: #06b6d4; top: 40%; right: 10%; animation-delay: -9s; }
+
+@keyframes floatOrb {
+  0%,100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(30px) scale(1.06); }
+}
+
+[data-theme="light"] .orb { opacity: 0.18; }
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+.app {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 400px);
+  padding: 16px;
+  animation: slideUp 0.6s cubic-bezier(.2,.8,.3,1) both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   GLASS CARD
+   ============================================================ */
+.calc-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  overflow: hidden;
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 6px;
+}
+
+.app-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--display-expr);
+}
+
+.top-actions { display: flex; gap: 8px; }
+
+.icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--theme-toggle-bg);
+  color: var(--theme-toggle-fg);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  transition: var(--transition);
+  transition-property: background, transform;
+}
+.icon-btn:hover { background: rgba(139,92,246,0.28); transform: scale(1.1); }
+.icon-btn:active { transform: scale(.94); }
+
+/* ============================================================
+   DISPLAY
+   ============================================================ */
+.display {
+  margin: 10px 14px 8px;
+  background: var(--display-bg);
+  border-radius: 18px;
+  padding: 16px 20px 12px;
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+#expr-display {
+  font-size: 15px;
+  color: var(--display-expr);
+  word-break: break-all;
+  text-align: right;
+  min-height: 20px;
+  transition: opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+
+#result-display {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--display-result);
+  text-align: right;
+  word-break: break-all;
+  transition: font-size 0.15s ease, transform 0.2s ease;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  background: rgba(139,92,246,0.15);
+  color: var(--display-expr);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.display:hover .copy-btn { opacity: 1; }
+.copy-btn:hover { background: rgba(139,92,246,0.3); color: #c4b5fd; }
+
+/* result pop animation */
+@keyframes resultPop {
+  0%   { transform: scale(.95); opacity: .6; }
+  60%  { transform: scale(1.03); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.result-pop { animation: resultPop 0.28s cubic-bezier(.4,0,.2,1); }
+
+/* error shake */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-6px); }
+  40%,80% { transform: translateX(6px); }
+}
+.shake { animation: shake 0.38s ease; }
+
+/* ============================================================
+   BUTTON GRID
+   ============================================================ */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 6px 14px 14px;
+}
+
+button.btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: var(--radius-btn);
+  height: 64px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-display);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  -webkit-tap-highlight-color: transparent;
+  letter-spacing: -0.01em;
+}
+
+/* number */
+.btn-num {
+  background: var(--btn-num-bg);
+  color: var(--btn-num-fg);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.btn-num:hover { background: var(--btn-num-hover); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.28); }
+
+/* operator */
+.btn-op {
+  background: var(--btn-op-bg);
+  color: var(--btn-op-fg);
+}
+.btn-op:hover { background: var(--btn-op-hover); transform: translateY(-1px); }
+
+/* equals */
+.btn-eq {
+  background: var(--btn-eq-bg);
+  color: var(--btn-eq-fg);
+  box-shadow: 0 4px 20px rgba(124,58,237,0.45);
+}
+.btn-eq:hover { background: var(--btn-eq-hover); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(124,58,237,0.55); }
+
+/* clear */
+.btn-clear {
+  background: var(--btn-clear-bg);
+  color: var(--btn-clear-fg);
+}
+.btn-clear:hover { background: var(--btn-clear-hover); transform: translateY(-1px); }
+
+/* delete */
+.btn-del {
+  background: var(--btn-del-bg);
+  color: var(--btn-del-fg);
+}
+.btn-del:hover { background: var(--btn-del-hover); transform: translateY(-1px); }
+
+/* percent */
+.btn-pct {
+  background: var(--btn-pct-bg);
+  color: var(--btn-pct-fg);
+}
+.btn-pct:hover { background: var(--btn-pct-hover); transform: translateY(-1px); }
+
+/* negate */
+.btn-neg {
+  background: var(--btn-neg-bg);
+  color: var(--btn-neg-fg);
+}
+.btn-neg:hover { background: var(--btn-neg-hover); transform: translateY(-1px); }
+
+/* zero spans 2 cols */
+.btn-zero { grid-column: span 2; font-size: 22px; }
+
+/* active state */
+.btn:active { transform: scale(.92) !important; box-shadow: none !important; }
+
+/* ============================================================
+   RIPPLE
+   ============================================================ */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  width: 100px; height: 100px;
+  margin-top: -50px; margin-left: -50px;
+  pointer-events: none;
+  animation: rippleAnim 0.5s ease-out forwards;
+}
+@keyframes rippleAnim {
+  0%   { opacity: 1; transform: scale(0); }
+  100% { opacity: 0; transform: scale(3); }
+}
+
+/* ============================================================
+   HISTORY PANEL
+   ============================================================ */
+.history-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(.4,0,.2,1);
+}
+.history-panel.open { max-height: 300px; }
+
+.history-inner {
+  background: var(--history-bg);
+  margin: 0 14px;
+  border-radius: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--glass-border);
+  overflow-y: auto;
+  max-height: 230px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.history-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--display-expr);
+}
+
+.clear-hist-btn {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--btn-clear-fg);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.clear-hist-btn:hover { background: var(--btn-clear-hover); }
+
+.history-empty {
+  font-size: 12px;
+  color: var(--history-text);
+  text-align: center;
+  padding: 12px 0;
+  opacity: 0.6;
+}
+
+.history-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: var(--history-item);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.history-item:hover { background: rgba(139,92,246,0.15); }
+.history-item:last-child { margin-bottom: 0; }
+
+.hist-expr { font-size: 11px; color: var(--display-expr); }
+.hist-result { font-size: 16px; font-weight: 700; color: var(--display-result); }
+
+/* spacer below history */
+.history-spacer { height: 8px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  text-align: center;
+  padding: 8px 14px 14px;
+  font-size: 10px;
+  color: var(--display-expr);
+  opacity: 0.6;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.4); border-radius: 4px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 420px) {
+  .app { padding: 10px; }
+  button.btn { height: 56px; font-size: 18px; border-radius: 15px; }
+  #result-display { font-size: 34px; }
+  .btn-grid { gap: 8px; }
+}
+
+@media (max-height: 700px) {
+  button.btn { height: 52px; }
+  .display { min-height: 90px; }
+}
+</style>
+</head>
+
+<body>
+<!-- Animated Background -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<main class="app" role="main">
+  <div class="calc-card">
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <span class="app-title">Calc</span>
+      <div class="top-actions">
+        <button class="icon-btn" id="hist-toggle-btn" title="History (H)" aria-label="Toggle history">
+          <!-- clock icon -->
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="theme-btn" title="Toggle Theme (T)" aria-label="Toggle theme">
+          <!-- sun/moon -->
+          <svg id="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history-panel" id="history-panel" aria-live="polite">
+      <div class="history-inner">
+        <div class="history-header">
+          <span class="history-title">History</span>
+          <button class="clear-hist-btn" id="clear-hist-btn">Clear all</button>
+        </div>
+        <div id="history-list">
+          <p class="history-empty">No calculations yet</p>
+        </div>
+      </div>
+      <div class="history-spacer"></div>
+    </div>
+
+    <!-- Display -->
+    <div class="display" id="display-area">
+      <button class="copy-btn" id="copy-btn" title="Copy result">Copy</button>
+      <div id="expr-display" aria-label="Expression"></div>
+      <div id="result-display" aria-label="Result" aria-live="polite">0</div>
+    </div>
+
+    <!-- Button Grid -->
+    <div class="btn-grid" role="group" aria-label="Calculator buttons">
+      <!-- Row 1 -->
+      <button class="btn btn-clear"  data-action="clear">AC</button>
+      <button class="btn btn-neg"    data-action="negate">+/−</button>
+      <button class="btn btn-pct"    data-action="percent">%</button>
+      <button class="btn btn-op"     data-action="operator" data-value="÷">÷</button>
+      <!-- Row 2 -->
+      <button class="btn btn-num"    data-action="digit" data-value="7">7</button>
+      <button class="btn btn-num"    data-action="digit" data-value="8">8</button>
+      <button class="btn btn-num"    data-action="digit" data-value="9">9</button>
+      <button class="btn btn-op"     data-action="operator" data-value="×">×</button>
+      <!-- Row 3 -->
+      <button class="btn btn-num"    data-action="digit" data-value="4">4</button>
+      <button class="btn btn-num"    data-action="digit" data-value="5">5</button>
+      <button class="btn btn-num"    data-action="digit" data-value="6">6</button>
+      <button class="btn btn-op"     data-action="operator" data-value="−">−</button>
+      <!-- Row 4 -->
+      <button class="btn btn-num"    data-action="digit" data-value="1">1</button>
+      <button class="btn btn-num"    data-action="digit" data-value="2">2</button>
+      <button class="btn btn-num"    data-action="digit" data-value="3">3</button>
+      <button class="btn btn-op"     data-action="operator" data-value="+">+</button>
+      <!-- Row 5 -->
+      <button class="btn btn-num btn-zero" data-action="digit" data-value="0">0</button>
+      <button class="btn btn-num"    data-action="decimal">.</button>
+      <button class="btn btn-del"    data-action="delete">⌫</button>
+      <button class="btn btn-eq"     data-action="equals">=</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">PRESS KEYBOARD · ESC TO CLEAR · H FOR HISTORY</div>
+
+  </div><!-- .calc-card -->
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+<script>
+/* ============================================================
+   DOM REFS
+   ============================================================ */
+const exprEl        = document.getElementById('expr-display');
+const resultEl      = document.getElementById('result-display');
+const histPanel     = document.getElementById('history-panel');
+const histList      = document.getElementById('history-list');
+const toastEl       = document.getElementById('toast');
+const themeBtn      = document.getElementById('theme-btn');
+const themeIcon     = document.getElementById('theme-icon');
+const histToggleBtn = document.getElementById('hist-toggle-btn');
+const clearHistBtn  = document.getElementById('clear-hist-btn');
+const copyBtn       = document.getElementById('copy-btn');
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let firstNum      = null;   // left operand (number)
+let operator      = null;   // pending operator string
+let secondNum     = null;   // right operand (number)
+let displayStr    = '0';    // what shows on the big display
+let exprStr       = '';     // what shows on the small expression line
+let typingSecond  = false;  // are we typing the second number?
+let justCalc      = false;  // did we just press = ?
+let history       = [];     // [{expr, result}]
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function render() {
+  resultEl.textContent = displayStr;
+  exprEl.textContent   = exprStr;
+
+  // Shrink font for long text
+  const len = displayStr.length;
+  resultEl.style.fontSize =
+    len > 14 ? '20px' :
+    len > 11 ? '26px' :
+    len > 8  ? '34px' : '42px';
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+let toastTimer;
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+}
+
+function popResult() {
+  resultEl.classList.remove('result-pop');
+  void resultEl.offsetWidth;
+  resultEl.classList.add('result-pop');
+}
+
+function shakeDisplay() {
+  const d = document.getElementById('display-area');
+  d.classList.remove('shake');
+  void d.offsetWidth;
+  d.classList.add('shake');
+  d.addEventListener('animationend', () => d.classList.remove('shake'), { once: true });
+}
+
+// Format a number nicely (avoid floating noise)
+function fmt(n) {
+  if (!isFinite(n) || isNaN(n)) return 'Error';
+  // Round to 10 decimal places to kill floating-point noise
+  let result = Math.round(n * 1e10) / 1e10;
+  // Use toLocaleString-free approach for portability
+  return parseFloat(result.toPrecision(12)).toString();
+}
+
+/* ============================================================
+   CALCULATE — performs firstNum operator secondNum
+   ============================================================ */
+function calculate(a, op, b) {
+  switch (op) {
+    case '+': return a + b;
+    case '−': return a - b;
+    case '×': return a * b;
+    case '÷':
+      if (b === 0) return null; // signal error
+      return a / b;
+    default: return b;
+  }
+}
+
+/* ============================================================
+   HANDLERS
+   ============================================================ */
+
+function handleDigit(d) {
+  if (justCalc) {
+    // Start a brand new calculation after =
+    firstNum     = null;
+    operator     = null;
+    secondNum    = null;
+    exprStr      = '';
+    typingSecond = false;
+    justCalc     = false;
+    displayStr   = d;
+  } else if (typingSecond) {
+    displayStr = (displayStr === '0') ? d : displayStr + d;
+  } else {
+    displayStr = (displayStr === '0') ? d : displayStr + d;
+  }
+  if (displayStr.replace('-','').length > 15) {
+    displayStr = displayStr.slice(0, -1); // cap at 15 digits
+  }
+  render();
+}
+
+function handleDecimal() {
+  if (justCalc) {
+    displayStr   = '0.';
+    firstNum     = null; operator = null; secondNum = null;
+    exprStr      = ''; typingSecond = false; justCalc = false;
+    render(); return;
+  }
+  if (!displayStr.includes('.')) {
+    displayStr += '.';
+  }
+  render();
+}
+
+function handleOperator(op) {
+  justCalc = false;
+
+  // If we already have an operator and a second number, chain calculation
+  if (operator !== null && typingSecond && displayStr !== '0') {
+    const b   = parseFloat(displayStr);
+    const res = calculate(firstNum, operator, b);
+    if (res === null) { showDivError(); return; }
+    firstNum   = res;
+    displayStr = fmt(res);
+    exprStr    = fmt(res) + ' ' + op;
+  } else {
+    // Store current display as firstNum
+    firstNum = parseFloat(displayStr);
+    exprStr  = displayStr + ' ' + op;
+  }
+
+  operator     = op;
+  typingSecond = true;
+  displayStr   = '0';   // reset for second number entry
+  render();
+}
+
+function handleEquals() {
+  // Need both numbers and an operator
+  if (operator === null || !typingSecond) return;
+
+  const b      = parseFloat(displayStr);
+  const result = calculate(firstNum, operator, b);
+
+  if (result === null) { showDivError(); return; }
+
+  const fullExpr  = (exprStr || fmt(firstNum) + ' ' + operator) + ' ' + fmt(b) + ' =';
+  const resultFmt = fmt(result);
+
+  // Add to history
+  addHistory(fullExpr.replace(' =', ''), resultFmt);
+
+  exprStr    = fullExpr;
+  displayStr = resultFmt;
+
+  // Save state for chaining
+  firstNum     = result;
+  operator     = null;
+  secondNum    = b;
+  typingSecond = false;
+  justCalc     = true;
+
+  render();
+  popResult();
+
+  // Save last result
+  localStorage.setItem('calc_last', JSON.stringify({ expr: fullExpr, result: resultFmt }));
+}
+
+function handleClear() {
+  firstNum     = null;
+  operator     = null;
+  secondNum    = null;
+  displayStr   = '0';
+  exprStr      = '';
+  typingSecond = false;
+  justCalc     = false;
+  render();
+}
+
+function handleDelete() {
+  if (justCalc) { handleClear(); return; }
+  if (displayStr.length <= 1 || displayStr === '-0') {
+    displayStr = '0';
+  } else {
+    displayStr = displayStr.slice(0, -1);
+    if (displayStr === '-') displayStr = '0';
+  }
+  render();
+}
+
+function handlePercent() {
+  const val = parseFloat(displayStr);
+  if (isNaN(val)) return;
+  displayStr = fmt(val / 100);
+  render();
+}
+
+function handleNegate() {
+  if (displayStr === '0') return;
+  displayStr = displayStr.startsWith('-')
+    ? displayStr.slice(1)
+    : '-' + displayStr;
+  render();
+}
+
+function showDivError() {
+  exprStr    = exprStr;
+  displayStr = 'Error';
+  render();
+  shakeDisplay();
+  showToast('Cannot divide by zero');
+  setTimeout(handleClear, 1400);
+}
+
+/* ============================================================
+   HISTORY
+   ============================================================ */
+function addHistory(expr, result) {
+  history.unshift({ expr, result });
+  if (history.length > 30) history.pop();
+  renderHistory();
+}
+
+function renderHistory() {
+  if (history.length === 0) {
+    histList.innerHTML = '<p class="history-empty">No calculations yet</p>';
+    return;
+  }
+  histList.innerHTML = history.map((h, i) => `
+    <div class="history-item" data-index="${i}" role="button" tabindex="0">
+      <span class="hist-expr">${h.expr}</span>
+      <span class="hist-result">${h.result}</span>
+    </div>
+  `).join('');
+
+  histList.querySelectorAll('.history-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const h = history[parseInt(el.dataset.index)];
+      displayStr   = h.result;
+      firstNum     = parseFloat(h.result);
+      operator     = null;
+      typingSecond = false;
+      justCalc     = true;
+      exprStr      = h.expr + ' =';
+      render();
+      showToast('Result loaded');
+    });
+  });
+}
+
+/* ============================================================
+   BUTTON CLICKS
+   ============================================================ */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    addRipple(btn, e);
+    const action = btn.dataset.action;
+    const value  = btn.dataset.value;
+    switch (action) {
+      case 'digit':    handleDigit(value);   break;
+      case 'decimal':  handleDecimal();       break;
+      case 'operator': handleOperator(value); break;
+      case 'equals':   handleEquals();        break;
+      case 'clear':    handleClear();         break;
+      case 'delete':   handleDelete();        break;
+      case 'percent':  handlePercent();       break;
+      case 'negate':   handleNegate();        break;
+    }
+  });
+});
+
+/* ============================================================
+   RIPPLE
+   ============================================================ */
+function addRipple(btn, e) {
+  const r    = document.createElement('span');
+  r.className = 'ripple';
+  const rect  = btn.getBoundingClientRect();
+  r.style.left = (e.clientX - rect.left) + 'px';
+  r.style.top  = (e.clientY - rect.top)  + 'px';
+  btn.appendChild(r);
+  r.addEventListener('animationend', () => r.remove());
+}
+
+/* ============================================================
+   KEYBOARD
+   ============================================================ */
+document.addEventListener('keydown', e => {
+  const k = e.key;
+  if (k >= '0' && k <= '9')  { handleDigit(k);         return; }
+  switch (k) {
+    case '+':        handleOperator('+');  break;
+    case '-':        handleOperator('−');  break;
+    case '*':        handleOperator('×');  break;
+    case '/':        e.preventDefault(); handleOperator('÷'); break;
+    case '.': case ',': handleDecimal();  break;
+    case 'Enter': case '=': handleEquals(); break;
+    case 'Backspace': handleDelete();     break;
+    case 'Escape':    handleClear();      break;
+    case '%':         handlePercent();    break;
+    case 'h': case 'H': toggleHistory(); break;
+    case 't': case 'T': toggleTheme();   break;
+  }
+});
+
+/* ============================================================
+   THEME
+   ============================================================ */
+const moonSVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
+const sunSVG  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+function toggleTheme() {
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+  themeIcon.innerHTML = isDark ? moonSVG : sunSVG;
+  localStorage.setItem('calc_theme', isDark ? 'light' : 'dark');
+}
+themeBtn.addEventListener('click', toggleTheme);
+
+/* ============================================================
+   HISTORY PANEL
+   ============================================================ */
+function toggleHistory() { histPanel.classList.toggle('open'); }
+histToggleBtn.addEventListener('click', toggleHistory);
+clearHistBtn.addEventListener('click', () => { history = []; renderHistory(); });
+
+/* ============================================================
+   COPY
+   ============================================================ */
+copyBtn.addEventListener('click', () => {
+  if (!displayStr || displayStr === '0') return;
+  navigator.clipboard.writeText(displayStr)
+    .then(() => showToast('Copied!'))
+    .catch(() => showToast('Copy failed'));
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(function init() {
+  const savedTheme = localStorage.getItem('calc_theme') || 'dark';
+  document.documentElement.dataset.theme = savedTheme;
+  themeIcon.innerHTML = savedTheme === 'light' ? moonSVG : sunSVG;
+
+  try {
+    const last = JSON.parse(localStorage.getItem('calc_last'));
+    if (last && last.result && last.result !== 'Error') {
+      displayStr = last.result;
+      exprStr    = 'Last: ' + last.expr;
+      firstNum   = parseFloat(last.result);
+      justCalc   = true;
+    }
+  } catch(_) {}
+
+  render();
+  renderHistory();
+})();
+</script>
+</body>
+</html>

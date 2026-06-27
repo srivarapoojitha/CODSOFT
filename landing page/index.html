@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soundwave — Music Without Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="loader-icon">🎵</span>
+        <span class="loader-brand">Soundwave</span>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS INDICATOR ===== -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="#home" class="nav-logo">
+        <span class="nav-logo-icon">🎵</span>
+        <span class="nav-logo-text">Soundwave</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#premium" class="nav-link">Premium</a></li>
+        <li><a href="#playlists" class="nav-link">Playlists</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Nav Right -->
+      <div class="nav-right">
+        <button class="btn btn-outline btn-sm">Log In</button>
+        <button class="btn btn-primary btn-sm">Sign Up Free</button>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="home" class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <div class="hero-container">
+      <!-- Text Content -->
+      <div class="hero-content fade-in">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>Now Playing Worldwide</span>
+        </div>
+
+        <h1 class="hero-heading">
+          Your Soundtrack,<br />
+          <span class="typed-text" id="typed-text"></span>
+          <span class="typed-cursor">|</span>
+        </h1>
+
+        <p class="hero-desc">
+          Stream over 100 million songs, discover new artists, and lose yourself in music crafted just for you. No limits. No interruptions. Pure sound.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg ripple">Start Listening Free</button>
+          <button class="btn btn-ghost btn-lg">Explore Premium →</button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>600M+</strong>
+            <span>Listeners</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="hero-stat">
+            <strong>100M+</strong>
+            <span>Songs</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="hero-stat">
+            <strong>180+</strong>
+            <span>Countries</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="hero-visual fade-in delay-300">
+        <div class="player-card">
+          <div class="player-album">
+            <div class="album-art">
+              <div class="album-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+              </div>
+              <div class="album-center">🎵</div>
+            </div>
+          </div>
+          <div class="player-info">
+            <p class="player-track">Midnight Dreams</p>
+            <p class="player-artist">The Wavelength</p>
+          </div>
+          <div class="player-progress">
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="progress-times">
+              <span>2:14</span>
+              <span>4:30</span>
+            </div>
+          </div>
+          <div class="player-controls">
+            <button class="ctrl-btn">⏮</button>
+            <button class="ctrl-btn ctrl-play">▶</button>
+            <button class="ctrl-btn">⏭</button>
+          </div>
+        </div>
+
+        <!-- Floating music icons -->
+        <div class="float-icon float-1">🎸</div>
+        <div class="float-icon float-2">🎤</div>
+        <div class="float-icon float-3">🎹</div>
+        <div class="float-icon float-4">🥁</div>
+        <div class="float-icon float-5">🎺</div>
+        <div class="float-icon float-6">🎻</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES SECTION ===== -->
+  <section id="features" class="section features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Why Soundwave</span>
+        <h2 class="section-title">Everything Music. <span class="text-accent">Perfected.</span></h2>
+        <p class="section-desc">We obsess over every detail so you can focus on what matters — the music.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card fade-in delay-100">
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">🎵</span>
+          </div>
+          <h3 class="feature-title">100M+ Songs</h3>
+          <p class="feature-desc">From classic rock to lo-fi hip-hop, every genre, every era — all in one place. Your entire world of music, always at your fingertips.</p>
+        </div>
+
+        <div class="feature-card fade-in delay-200">
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">📶</span>
+          </div>
+          <h3 class="feature-title">Offline Listening</h3>
+          <p class="feature-desc">Download your favourites and listen without an internet connection. Your music goes where you go — even underground.</p>
+        </div>
+
+        <div class="feature-card fade-in delay-300">
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">🧠</span>
+          </div>
+          <h3 class="feature-title">Smart Playlists</h3>
+          <p class="feature-desc">Our AI engine learns your taste and builds playlists that feel like they were curated by someone who truly gets you.</p>
+        </div>
+
+        <div class="feature-card fade-in delay-400">
+          <div class="feature-icon-wrap">
+            <span class="feature-icon">🔊</span>
+          </div>
+          <h3 class="feature-title">Lossless Audio</h3>
+          <p class="feature-desc">Hear every detail with studio-quality, 320kbps streaming. Because great music deserves to be heard exactly as it was recorded.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATISTICS SECTION ===== -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <span class="stat-number" data-target="600" data-suffix="M+">0</span>
+          <span class="stat-label">Active Users</span>
+        </div>
+        <div class="stat-card fade-in delay-100">
+          <span class="stat-number" data-target="100" data-suffix="M+">0</span>
+          <span class="stat-label">Songs Available</span>
+        </div>
+        <div class="stat-card fade-in delay-200">
+          <span class="stat-number" data-target="180" data-suffix="+">0</span>
+          <span class="stat-label">Countries</span>
+        </div>
+        <div class="stat-card fade-in delay-300">
+          <span class="stat-number" data-target="5" data-suffix="B+">0</span>
+          <span class="stat-label">Playlists Created</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PREMIUM PLANS SECTION ===== -->
+  <section id="premium" class="section premium-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Choose Your <span class="text-accent">Sound</span></h2>
+        <p class="section-desc">Flexible plans that fit your life. Upgrade or downgrade any time.</p>
+      </div>
+
+      <div class="plans-grid">
+
+        <!-- Free Plan -->
+        <div class="plan-card fade-in delay-100">
+          <div class="plan-header">
+            <span class="plan-badge">Starter</span>
+            <h3 class="plan-name">Free</h3>
+            <div class="plan-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount">0</span>
+              <span class="price-period">/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li class="plan-feature plan-feature--yes">Ad-supported streaming</li>
+            <li class="plan-feature plan-feature--yes">Shuffle play on mobile</li>
+            <li class="plan-feature plan-feature--yes">Basic audio quality</li>
+            <li class="plan-feature plan-feature--no">Offline downloads</li>
+            <li class="plan-feature plan-feature--no">Skip unlimited tracks</li>
+            <li class="plan-feature plan-feature--no">Lossless audio</li>
+          </ul>
+          <button class="btn btn-outline btn-full ripple">Get Started</button>
+        </div>
+
+        <!-- Individual Premium (highlighted) -->
+        <div class="plan-card plan-card--featured fade-in delay-200">
+          <div class="plan-popular-badge">Most Popular</div>
+          <div class="plan-header">
+            <span class="plan-badge">Individual</span>
+            <h3 class="plan-name">Premium</h3>
+            <div class="plan-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount">9</span>
+              <span class="price-period">.99/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li class="plan-feature plan-feature--yes">Ad-free listening</li>
+            <li class="plan-feature plan-feature--yes">Unlimited skips</li>
+            <li class="plan-feature plan-feature--yes">High quality audio</li>
+            <li class="plan-feature plan-feature--yes">Offline downloads</li>
+            <li class="plan-feature plan-feature--yes">Lossless audio</li>
+            <li class="plan-feature plan-feature--yes">Exclusive content</li>
+          </ul>
+          <button class="btn btn-primary btn-full ripple">Start Free Trial</button>
+        </div>
+
+        <!-- Family Plan -->
+        <div class="plan-card fade-in delay-300">
+          <div class="plan-header">
+            <span class="plan-badge">Family</span>
+            <h3 class="plan-name">Family</h3>
+            <div class="plan-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount">15</span>
+              <span class="price-period">.99/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li class="plan-feature plan-feature--yes">Up to 6 accounts</li>
+            <li class="plan-feature plan-feature--yes">All Premium features</li>
+            <li class="plan-feature plan-feature--yes">Family mix playlist</li>
+            <li class="plan-feature plan-feature--yes">Parental controls</li>
+            <li class="plan-feature plan-feature--yes">Individual libraries</li>
+            <li class="plan-feature plan-feature--yes">Group session mode</li>
+          </ul>
+          <button class="btn btn-outline btn-full ripple">Get Family Plan</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLAYLISTS SECTION ===== -->
+  <section id="playlists" class="section playlists-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Curated for You</span>
+        <h2 class="section-title">Popular <span class="text-accent">Playlists</span></h2>
+        <p class="section-desc">Handpicked collections for every mood, moment, and genre.</p>
+      </div>
+
+      <div class="playlists-grid">
+
+        <div class="playlist-card fade-in delay-100">
+          <div class="playlist-cover" style="--cover-color: #1a1a2e; --cover-color2: #16213e;">
+            <div class="playlist-cover-art">🌙</div>
+            <div class="playlist-play-btn">▶</div>
+          </div>
+          <div class="playlist-info">
+            <h4 class="playlist-title">Late Night Vibes</h4>
+            <p class="playlist-desc">Chill beats for the quiet hours when the world slows down.</p>
+            <span class="playlist-meta">48 songs • 3h 12m</span>
+          </div>
+        </div>
+
+        <div class="playlist-card fade-in delay-150">
+          <div class="playlist-cover" style="--cover-color: #2d1b69; --cover-color2: #11998e;">
+            <div class="playlist-cover-art">🔥</div>
+            <div class="playlist-play-btn">▶</div>
+          </div>
+          <div class="playlist-info">
+            <h4 class="playlist-title">Top Hits 2025</h4>
+            <p class="playlist-desc">The songs everyone is talking about, right now.</p>
+            <span class="playlist-meta">100 songs • 6h 45m</span>
+          </div>
+        </div>
+
+        <div class="playlist-card fade-in delay-200">
+          <div class="playlist-cover" style="--cover-color: #1a472a; --cover-color2: #2d6a4f;">
+            <div class="playlist-cover-art">🌿</div>
+            <div class="playlist-play-btn">▶</div>
+          </div>
+          <div class="playlist-info">
+            <h4 class="playlist-title">Morning Focus</h4>
+            <p class="playlist-desc">Acoustic and ambient sounds to start your day with clarity.</p>
+            <span class="playlist-meta">35 songs • 2h 08m</span>
+          </div>
+        </div>
+
+        <div class="playlist-card fade-in delay-250">
+          <div class="playlist-cover" style="--cover-color: #4a1942; --cover-color2: #c33764;">
+            <div class="playlist-cover-art">💜</div>
+            <div class="playlist-play-btn">▶</div>
+          </div>
+          <div class="playlist-info">
+            <h4 class="playlist-title">R&B Soul Mix</h4>
+            <p class="playlist-desc">Smooth grooves and silky vocals for your soulful side.</p>
+            <span class="playlist-meta">62 songs • 4h 22m</span>
+          </div>
+        </div>
+
+        <div class="playlist-card fade-in delay-300">
+          <div class="playlist-cover" style="--cover-color: #7b2d00; --cover-color2: #e65c00;">
+            <div class="playlist-cover-art">⚡</div>
+            <div class="playlist-play-btn">▶</div>
+          </div>
+          <div class="playlist-info">
+            <h4 class="playlist-title">Workout Fuel</h4>
+            <p class="playlist-desc">High-energy anthems to push you past your limits.</p>
+            <span class="playlist-meta">55 songs • 3h 40m</span>
+          </div>
+        </div>
+
+        <div class="playlist-card fade-in delay-350">
+          <div class="playlist-cover" style="--cover-color: #003366; --cover-color2: #0077b6;">
+            <div class="playlist-cover-art">🎸</div>
+            <div class="playlist-play-btn">▶</div>
+          </div>
+          <div class="playlist-info">
+            <h4 class="playlist-title">Classic Rock Icons</h4>
+            <p class="playlist-desc">The greatest guitar riffs and anthems that defined generations.</p>
+            <span class="playlist-meta">80 songs • 5h 55m</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS SECTION ===== -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Real People, Real Vibes</span>
+        <h2 class="section-title">What Our <span class="text-accent">Listeners</span> Say</h2>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-in delay-100">
+          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"Soundwave completely changed how I experience music. The AI playlists feel like they read my mind — every recommendation hits differently."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="--avatar-bg: #1DB954;">A</div>
+            <div class="author-info">
+              <strong>Alex Rivera</strong>
+              <span>Premium Member since 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in delay-200">
+          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"The offline mode is a lifesaver on my daily commute. Lossless audio quality on my AirPods Pro is genuinely mind-blowing. Worth every cent."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="--avatar-bg: #9b59b6;">S</div>
+            <div class="author-info">
+              <strong>Sophia Chen</strong>
+              <span>Family Plan since 2022</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in delay-300">
+          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"I discovered three of my now-favourite artists through Soundwave's recommendations. It's not just a music app — it's a music journey."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="--avatar-bg: #e74c3c;">M</div>
+            <div class="author-info">
+              <strong>Marcus Johnson</strong>
+              <span>Premium Member since 2024</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ SECTION ===== -->
+  <section id="contact" class="section faq-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Got Questions?</span>
+        <h2 class="section-title">Frequently <span class="text-accent">Asked</span></h2>
+      </div>
+
+      <div class="faq-list fade-in delay-100">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is Soundwave really free to use?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! The free tier gives you access to the full music library with ad-supported streaming. You can listen on any device, discover new music, and follow artists — completely free. Upgrade to Premium any time to remove ads and unlock all features.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I cancel my Premium plan any time?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. There are no long-term contracts or cancellation fees. You can cancel your subscription at any time from your account settings, and you'll keep your Premium benefits until the end of your billing period.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does the Family Plan work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>The Family Plan supports up to 6 individual accounts, each with their own library, playlists, and personalised recommendations. All accounts must reside at the same address. Each member gets full Premium features independently.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What audio quality does Soundwave offer?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Free users get standard quality (128kbps). Premium subscribers enjoy high quality (320kbps AAC) and Lossless Audio (FLAC, up to 24-bit/192kHz) on supported devices. We also offer Spatial Audio on compatible headphones.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How many songs can I download for offline listening?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Premium subscribers can download up to 10,000 songs per device, across up to 5 devices. Downloads stay available as long as your Premium subscription is active. We store them securely on your device so you own your listening experience.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Does Soundwave have a student discount?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Verified students get Premium for just $4.99/month — that's 50% off the regular price. Verification is handled through SheerID with your university email address. The discount is renewable annually while you remain enrolled.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CALL TO ACTION SECTION ===== -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card fade-in">
+        <div class="cta-glow"></div>
+        <span class="section-label">Start Today</span>
+        <h2 class="cta-heading">Your Music is Waiting.<br />Press <span class="text-accent">Play.</span></h2>
+        <p class="cta-desc">Join 600 million listeners and discover a new way to experience music. No credit card required.</p>
+        <div class="cta-actions">
+          <button class="btn btn-primary btn-xl ripple glow-btn">Start Listening Free</button>
+          <button class="btn btn-ghost btn-xl">View Plans</button>
+        </div>
+        <p class="cta-fine">Free forever · Upgrade anytime · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo footer-logo">
+            <span class="nav-logo-icon">🎵</span>
+            <span class="nav-logo-text">Soundwave</span>
+          </a>
+          <p class="footer-tagline">Music without limits. Stream anything, anywhere, anytime.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+
+        <!-- About Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">About</h4>
+          <ul class="footer-links">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Leadership</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">For Artists</a></li>
+            <li><a href="#">Developers</a></li>
+            <li><a href="#">Advertising</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Settings</a></li>
+            <li><a href="#">Accessibility</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Soundwave. All rights reserved. Inspired by the love of music.</p>
+        <p class="footer-disclaimer">This is a portfolio project. Not affiliated with Spotify AB.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BACK TO TOP BUTTON ===== -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sri Vara Poojitha | Aspiring Software Developer</title>
+<meta name="description" content="Portfolio of Ganipisetty Sri Vara Poojitha — B.Tech 2nd year student, aspiring software developer and web development enthusiast." />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="home">
+
+<!-- ===== LOADING SCREEN ===== -->
+<div id="loader" class="loader">
+  <div class="loader-inner">
+    <div class="loader-photo-ring">
+      <img src="images/puji-pic.png" alt="Sri Vara Poojitha" class="loader-photo" />
+    </div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p class="loader-text">Crafting Digital Experiences…</p>
+  </div>
+</div>
+
+<!-- ===== SCROLL PROGRESS ===== -->
+<div id="progress" class="progress-bar"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar" class="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-brand" data-nav="home">
+      <img src="images/puji-pic.png" alt="Sri Vara Poojitha" class="nav-photo" />
+      <span class="nav-name">Sri Vara Poojitha</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active" data-nav="home">Home</a></li>
+      <li><a href="#about" class="nav-link" data-nav="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-nav="skills">Skills</a></li>
+      <li><a href="#projects" class="nav-link" data-nav="projects">Projects</a></li>
+      <li><a href="#resume" class="nav-link" data-nav="resume">Resume</a></li>
+      <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== MOBILE MENU ===== -->
+<div id="mobileMenu" class="mobile-menu">
+  <ul>
+    <li><a href="#home" class="mob-link">Home</a></li>
+    <li><a href="#about" class="mob-link">About</a></li>
+    <li><a href="#skills" class="mob-link">Skills</a></li>
+    <li><a href="#projects" class="mob-link">Projects</a></li>
+    <li><a href="#resume" class="mob-link">Resume</a></li>
+    <li><a href="#contact" class="mob-link">Contact</a></li>
+  </ul>
+</div>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="section hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-inner">
+
+      <div class="hero-left reveal">
+        <p class="hero-greeting">👋 Hello, welcome to my portfolio</p>
+        <h1 class="hero-heading">Hi, I'm <span class="grad-text">Sri Vara<br/>Poojitha</span></h1>
+        <div class="hero-typing">
+          <span id="typingText"></span><span class="type-cursor">|</span>
+        </div>
+        <p class="hero-para">
+          A passionate B.Tech 2nd-year student with a strong interest in software development and web technologies. I enjoy building responsive websites, learning modern tools, and solving real-world problems through code.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="assets/resume.pdf" class="btn btn-secondary" download>Download Resume ⬇</a>
+        </div>
+      </div>
+
+      <div class="hero-right reveal">
+        <div class="hero-shape shape-1"></div>
+        <div class="hero-shape shape-2"></div>
+        <div class="hero-shape shape-3"></div>
+        <div class="hero-photo-wrap">
+          <div class="hero-glow"></div>
+          <img src="images/puji-pic.png" alt="Sri Vara Poojitha — profile photo" class="hero-photo" />
+        </div>
+      </div>
+
+    </div>
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Get to know me</p>
+        <h2 class="section-title">About <span class="grad-text">Me</span></h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-photo-col reveal">
+          <div class="about-photo-frame">
+            <img src="images/puji-pic.png" alt="Sri Vara Poojitha" class="about-photo" />
+          </div>
+        </div>
+
+        <div class="about-text-col reveal">
+          <p class="about-para">
+            I am a passionate B.Tech student with a strong interest in software development and web technologies. I enjoy building responsive websites, learning modern technologies, and solving real-world problems through technology.
+          </p>
+          <p class="about-para">
+            My goal is to continuously improve my skills and become a successful software engineer capable of creating impactful digital solutions.
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-card glass">
+              <span class="stat-icon">🎓</span>
+              <span class="stat-label">2nd Year B.Tech Student</span>
+            </div>
+            <div class="stat-card glass">
+              <span class="stat-icon">💻</span>
+              <span class="stat-label">Web Developer</span>
+            </div>
+            <div class="stat-card glass">
+              <span class="stat-icon">📚</span>
+              <span class="stat-label">Lifelong Learner</span>
+            </div>
+            <div class="stat-card glass">
+              <span class="stat-icon">🚀</span>
+              <span class="stat-label">Future Software Engineer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">What I work with</p>
+        <h2 class="section-title">My <span class="grad-text">Skills</span></h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-card glass reveal">
+          <div class="skill-icon">🌐</div>
+          <h3>Frontend Development</h3>
+          <div class="skill-bars">
+            <div class="skill-row">
+              <span class="skill-name">HTML5<em>90%</em></span>
+              <div class="skill-track"><div class="skill-fill" data-w="90"></div></div>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">CSS3<em>85%</em></span>
+              <div class="skill-track"><div class="skill-fill" data-w="85"></div></div>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">JavaScript<em>75%</em></span>
+              <div class="skill-track"><div class="skill-fill" data-w="75"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-card glass reveal">
+          <div class="skill-icon">⚙️</div>
+          <h3>Other Skills</h3>
+          <div class="other-tags">
+            <span class="other-tag">Responsive Web Design</span>
+            <span class="other-tag">Git &amp; GitHub</span>
+            <span class="other-tag">Problem Solving</span>
+            <span class="other-tag">UI/UX Fundamentals</span>
+            <span class="other-tag">Team Collaboration</span>
+            <span class="other-tag">Communication Skills</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">What I've built</p>
+        <h2 class="section-title">My <span class="grad-text">Projects</span></h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card glass reveal">
+          <div class="project-thumb thumb-1">
+            <span class="project-emoji">🏨</span>
+            <div class="project-overlay">
+              <a href="#" class="ov-btn">Live Demo</a>
+              <a href="https://github.com/srivarapoojitha" target="_blank" rel="noopener" class="ov-btn ov-outline">GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Luxury Booking Platform Clone</h3>
+            <p>A responsive clone of a luxury accommodation and travel booking platform built using HTML, CSS, and JavaScript.</p>
+            <div class="project-tags">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass reveal">
+          <div class="project-thumb thumb-2">
+            <span class="project-emoji">💼</span>
+            <div class="project-overlay">
+              <a href="#" class="ov-btn">Live Demo</a>
+              <a href="https://github.com/srivarapoojitha" target="_blank" rel="noopener" class="ov-btn ov-outline">GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Personal Portfolio Website</h3>
+            <p>A modern portfolio showcasing skills, projects, and achievements with premium UI design.</p>
+            <div class="project-tags">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card glass reveal">
+          <div class="project-thumb thumb-3">
+            <span class="project-emoji">💡</span>
+            <div class="project-overlay">
+              <a href="#" class="ov-btn">Live Demo</a>
+              <a href="https://github.com/srivarapoojitha" target="_blank" rel="noopener" class="ov-btn ov-outline">GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Student Innovation Project</h3>
+            <p>A conceptual solution designed to solve real-world challenges using technology and creativity.</p>
+            <div class="project-tags">
+              <span class="tech-tag">Concept</span>
+              <span class="tech-tag">Innovation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESUME ===== -->
+  <section id="resume" class="section resume">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">My credentials</p>
+        <h2 class="section-title">My <span class="grad-text">Resume</span></h2>
+      </div>
+
+      <div class="resume-card glass reveal">
+        <div class="resume-card-left">
+          <div class="resume-icon">📄</div>
+          <div>
+            <h3>Sri Vara Poojitha — Resume</h3>
+            <p class="resume-sub">B.Tech CSE · Python · Java · C · Web Development</p>
+            <ul class="resume-points">
+              <li>CGPA 9.13/10 — PSCMRCET, Vijayawada</li>
+              <li>Tata Forage Cybersecurity Internship</li>
+              <li>Vision-X &amp; Brain O Vision Hackathons</li>
+              <li>3 Professional Certifications</li>
+            </ul>
+          </div>
+        </div>
+        <div class="resume-card-right">
+          <a href="assets/resume.pdf" class="btn btn-primary" download>Download Resume ⬇</a>
+          <a href="assets/resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Preview Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACHIEVEMENTS ===== -->
+  <section id="achievements" class="section achievements">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Milestones</p>
+        <h2 class="section-title">My <span class="grad-text">Achievements</span></h2>
+      </div>
+
+      <div class="ach-grid">
+        <div class="ach-card glass reveal">
+          <div class="ach-icon">🏢</div>
+          <h3>Internship Participant</h3>
+          <p>Tata Forage — Cybersecurity Virtual Experience</p>
+        </div>
+        <div class="ach-card glass reveal">
+          <div class="ach-icon">📖</div>
+          <h3>Continuous Learner</h3>
+          <p>3+ certifications in Python, Java &amp; Generative AI</p>
+        </div>
+        <div class="ach-card glass reveal">
+          <div class="ach-icon">🌐</div>
+          <h3>Web Development Enthusiast</h3>
+          <p>Building responsive, modern web experiences</p>
+        </div>
+        <div class="ach-card glass reveal">
+          <div class="ach-icon">🚀</div>
+          <h3>Future Technology Professional</h3>
+          <p>Driven to grow into a skilled software engineer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Let's connect</p>
+        <h2 class="section-title">Get In <span class="grad-text">Touch</span></h2>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-info reveal">
+          <h3>Let's build something great together</h3>
+          <p>I'm open to internship opportunities, collaborations, and conversations about technology and innovation.</p>
+
+          <div class="contact-items">
+            <a href="mailto:srivarapoojithaganipisetty@gmail.com" class="contact-item glass">
+              <span class="ci-icon">📧</span>
+              <span class="ci-text"><span>Email</span><strong>srivarapoojithaganipisetty@gmail.com</strong></span>
+            </a>
+            <a href="tel:9059769420" class="contact-item glass">
+              <span class="ci-icon">📞</span>
+              <span class="ci-text"><span>Phone</span><strong>+91 9059769420</strong></span>
+            </a>
+            <div class="contact-item glass">
+              <span class="ci-icon">📍</span>
+              <span class="ci-text"><span>Location</span><strong>Meduru, Krishna District, Andhra Pradesh</strong></span>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <a href="https://linkedin.com/in/sri-vara-poojitha-ganipisetty-579542340" target="_blank" rel="noopener" class="social-circle" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://github.com/srivarapoojitha" target="_blank" rel="noopener" class="social-circle" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-circle" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form glass reveal" id="contactForm" novalidate>
+          <h3>Send a Message</h3>
+
+          <div class="form-group">
+            <label for="cf-name">Your Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="John Doe" required />
+            <span class="field-error" data-for="cf-name"></span>
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email Address</label>
+            <input type="email" id="cf-email" name="email" placeholder="john@example.com" required />
+            <span class="field-error" data-for="cf-email"></span>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="Internship Opportunity" required />
+            <span class="field-error" data-for="cf-subject"></span>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Tell me about the opportunity…" required></textarea>
+            <span class="field-error" data-for="cf-message"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            <span id="formBtnText">Send Message</span>
+          </button>
+          <div id="formSuccess" class="form-success">✅ Message sent! I'll get back to you soon.</div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="#home" class="footer-brand">
+      <img src="images/puji-pic.png" alt="Sri Vara Poojitha" class="footer-photo" />
+      <span>Sri Vara Poojitha</span>
+    </a>
+    <p class="footer-tag">Aspiring Software Developer · Web Development Enthusiast</p>
+    <div class="footer-socials">
+      <a href="https://linkedin.com/in/sri-vara-poojitha-ganipisetty-579542340" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a href="https://github.com/srivarapoojitha" target="_blank" rel="noopener" aria-label="GitHub">gh</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+    </div>
+    <p class="footer-copy">© 2026 Sri Vara Poojitha. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== BACK TO TOP ===== -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
